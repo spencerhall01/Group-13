@@ -21,7 +21,8 @@ Spencer Hall (jsh278)
 spencerhall01 (spencerhall01@gmail.com)
 Group leader and contributer
 
-George Anim
+George Anim (gba37@msstate.edu)
+Role: Contributor 
 
 Kyana Conway (ktc188)
 KyanaConway (ktc188@msstate.edu)
