@@ -23,7 +23,7 @@ Group leader and contributer
 
 George Anim
 
-Kyana Conway
-KyanaConway
+Kyana Conway (ktc188)
+KyanaConway (ktc188@msstate.edu)
 Role: contributing to e-commerce platform project
 Languages: Python, SQL, Databases
