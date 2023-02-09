@@ -22,6 +22,7 @@ spencerhall01 (spencerhall01@gmail.com)
 Group leader and contributer
 
 George Anim
+Contributor
 
 Kyana Conway
 KyanaConway
