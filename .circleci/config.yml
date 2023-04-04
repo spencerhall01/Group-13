@@ -11,7 +11,7 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          app-dir: ~/Group-13/.circleci/
+          app-dir: ~/.circleci/
           pip-dependency-file: test-requirements.txt
       - run:
           name: Run tests
