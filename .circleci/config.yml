@@ -7,12 +7,12 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.10.2
-    working_directory: ./.circleci/
+    working_directory: .
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          app-dir: ./.circleci/
+          app-dir: .
           pip-dependency-file: test-requirements.txt
       - run:
           name: Run tests
