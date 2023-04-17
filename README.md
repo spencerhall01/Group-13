@@ -13,6 +13,7 @@ This is a project for Dr. Charan Gudla's Introduction to Software Engineering cl
 
 The objective of this project is to design and develope an e-commerce platform that will have a number of functionalities based on the customer's (TA's) expectations.
 
+
 **Features:**
 
 - At the login page, new users will have the option to sign up for an account based on role. The roles available are Buyer, Seller, and Administrator. After a user creates an account based on role, they will be able to sign in the next time they visit the application using the credentials they created.
