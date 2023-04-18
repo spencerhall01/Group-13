@@ -1,0 +1,91 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'mainapp/nav.html' %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('img/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+                <h1 class="mb-0 bread">My Cart</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    {% if cart|length > 0 %}
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>#</th>
+                                <th>&nbsp;</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <!-- <th>Quantity</th> -->
+                                <!-- <th>Total</th> -->
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart %}
+                            {% with product=item.product %}
+                            <tr class="text-center">
+                                <td>{{forloop.counter}}</td>
+                                <td class="image-prod">
+                                    <img class="img img-fluid"
+                                        src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}"
+                                        alt="..." style="height: 130px; width: auto">
+                                </td>
+
+						        <td class=" product-name">
+                                    <h3>{{ product.name }}</h3>
+                                </td>
+
+                                <td class="price">US ${{item.total_price}}</td>
+
+                                <!-- <td class="quantity">
+						        	<div class="input-group mb-3">
+					             	<input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+					          	</div>
+					          </td> -->
+                                <td class="product-remove"><a href="{% url 'cart:cart_remove' product.id %}"><span
+                                            class="ion-ios-close"></span></a></td>
+                            </tr><!-- END TR-->
+                            <tr>
+                                <td><b>Total</b></td>
+                                <td colspan="2"></td>
+                                <td colspan="num"><b>US ${{ cart.get_total_price }}</b></td>
+                            </tr>
+                            {% endwith %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <p class="text-muted text-center">You have no items in your cart. Please shop something</p>
+                    {% endif %}
+                    <p class="text-right">
+                        {% if cart|length > 0 %}
+                        <a href="{% url 'mainapp:shop' %}" class="btn btn-default">Continue Shopping</a>
+                        <a href="{% url 'orders:order_create' %}" class="btn btn-primary">Checkout</a>
+                        {% else %}
+                        <!-- <a href="{% url "mainapp:shop" %}" class="btn btn-default" disabled>Continue Shopping</a>
+            <a href="{% url "orders:order_create" %}" class="btn btn-primary" disabled>Checkout</a>                          -->
+                        {% endif %}
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+{% endblock content %}

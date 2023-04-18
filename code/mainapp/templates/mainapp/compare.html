@@ -1,0 +1,57 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block content %}
+{% include "mainapp/nav.html" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<div class="container py-5">
+    <h2 class="text-center pb-5">Compare Products</h2>
+    <div class="row">
+        <div class="col-6" style="border-right: 3px solid #000;">
+            <h3 class="text-center">Search for product 1</h3>
+            <select class="form-control" id="search_product_1">
+                <option>---- Select ----</option>
+                {% for product in the_products %}
+                <option value="{{product.id}}">{{product.name}}</option>
+                {% endfor %}
+            </select>
+            <div id="display_product_1" class="py-3 d-flex justify-content-center">
+                
+            </div>
+        </div>
+        <div class="col-6">
+            <h3 class="text-center">Search for product 2</h3>
+            <select class="form-control" id="search_product_2">
+                <option>---- Select ----</option>
+                {% for product in the_products %}
+                <option value="{{product.id}}">{{product.name}}</option>
+                {% endfor %}
+            </select>
+            <div id="display_product_2" class="py-3 d-flex justify-content-center">
+                
+            </div>
+        </div>
+    </div><br><br><br>
+</div>
+<script>
+    $(document).ready(function(){
+        $('#search_product_1').on("change", function(){
+            var selectedvalue = $(this).val();
+            $.get(`http://127.0.0.1:8000/allproducts/${selectedvalue}`, function(data) {
+                var thedata = data[0].fields;
+                var newContent = `<div><img src='http://127.0.0.1:8000/media/${thedata.image}' class='img-fluid py-3' style='width:200px;height:auto'><h3>${thedata.name}</h3><p>${thedata.description}</p><br><p>US $${thedata.price}</p><br><a href="http://127.0.0.1:8000/${data[0].pk}/${thedata.slug}"><button class='btn btn-primary'>Go to Item</button></a></div>`
+                $("#display_product_1").append(newContent);
+            })
+        });
+
+        $('#search_product_2').on("change", function(){
+            var selectedvalue2 = $(this).val();
+            $.get(`http://127.0.0.1:8000/allproducts/${selectedvalue2}`, function(data2) {
+                var thedata2 = data2[0].fields;
+                var newContent2 = `<div><img src='http://127.0.0.1:8000/media/${thedata2.image}' class='img-fluid py-3' style='width:200px;height:auto'><h3>${thedata2.name}</h3><p>${thedata2.description}</p><br><p>US $${thedata2.price}</p><br><a href="http://127.0.0.1:8000/${data2[0].pk}/${thedata2.slug}"><button class='btn btn-primary'>Go to Item</button></a></div>`
+                $("#display_product_2").append(newContent2);
+            })
+        });
+    })
+</script>
+{% endblock content%}

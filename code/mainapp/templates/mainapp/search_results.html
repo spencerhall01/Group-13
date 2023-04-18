@@ -1,0 +1,20 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load highlighter %}
+{% block content %}
+{% include 'mainapp/nav.html' %}
+<div class="container">
+    <h3 class="text-center py-5">Search results for "{{query}}"</h3>
+    <div class="row">
+        {% for object in products %}
+        <div class="col-12 mx-auto">
+          <h3>{{forloop.counter}}. <a href="">{{object.name|highlight:query}}</a></h3>
+          <h6 class="">Description: {{object.description|highlight:query}}&nbsp;</h6>
+          <h6>Category: {{object.category.name}}</h6>
+          <h6 class="">Price: {{object.price}}&nbsp;</h6>
+          <hr>
+        </div>
+        {% endfor %}
+      </div>
+</div>
+{% endblock content %}

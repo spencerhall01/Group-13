@@ -1,0 +1,28 @@
+{% extends "mainapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include "mainapp/nav.html" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div class="container">
+	<h3 class="text-center">Edit the product "{{the_product.name}}"</h3>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form|crispy}}
+				<input type="submit" class="btn btn-primary" value="Submit">
+			</form>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('#id_category').removeClass('select');
+        $('#id_category').addClass('form-control');
+        $('#id_rent_duration').removeClass('select');
+        $('#id_rent_duration').addClass('form-control');
+    })
+</script>
+{% endblock content %}
