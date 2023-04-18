@@ -11,15 +11,3 @@ def test_multiplication():
 
 def test_division():
     assert 6 / 2 == 3
-    
-def test_login():
-
-def test_logout():
-
-def test_search():
-
-def test_addToCart():
-
-def test_removeFromCart():
-
-def 
