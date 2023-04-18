@@ -32,14 +32,14 @@ The objective of this project is to design and develope an e-commerce platform t
 
 **Team Members:**
 
-Spencer Hall (jsh278)
-spencerhall01 (spencerhall01@gmail.com)
-Group leader, developer, and programmer
+Spencer Hall (jsh278)  
+spencerhall01 (spencerhall01@gmail.com)  
+Group leader, developer, and programmer  
 
-George Anim (gba37@msstate.edu)
-animkofi()
-Developer and programmer
+George Anim (gba37@msstate.edu)  
+animkofi()  
+Developer and programmer  
 
-Kyana Conway (ktc188)
-KyanaConway (ktc188@msstate.edu)
-Developer and programmer
+Kyana Conway (ktc188)  
+KyanaConway (ktc188@msstate.edu)  
+Developer and programmer  
