@@ -1,0 +1,30 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'mainapp/nav.html' %}
+<div class="container">
+    <div class="row py-5">
+        <div class="col-8 mx-auto">
+            <h3 class="text-center">Are you sure you  want to return the item:</h3>
+            {% for order in customer_orders %}
+            <p class="text-center">Product Name: {{ order.product.name }}</p>
+            <p class="text-center">Order quantity: {{order.quantity}}</p>
+            <p class="text-center">Order total: {{order.price}}</p>
+            {% endfor %}
+            <br><br>
+            <div class="d-flex justify-content-center">
+                <form method="POST">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">Return Item</button>
+            </form>
+            <a href="{% url 'mainapp:order-history' %}">
+                <button class="btn btn-primary">Go back</button>
+            </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock content %}
