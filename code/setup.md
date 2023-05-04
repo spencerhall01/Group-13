@@ -26,5 +26,13 @@
 You can create your own superuser from the terminal
 
     $ python3 manage.py createsuperuser
+    
+### PyTest
+
+1. Run source myvenv/bin/activate
+
+2. Run export DJANGO_SETTINGS_MODULE=ksgstore.settings
+
+3. Run pytest
 
 
