@@ -7,7 +7,7 @@ jobs:
 
     steps:
       - checkout
-          path: ./code
+          path: code
 
       # Set up a Python virtual environment
       - run:
