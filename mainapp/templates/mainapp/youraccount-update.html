@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'mainapp/nav.html' %}
+<br><br><br>
+<div class="container">
+	<h1 class="text-center">Please use this form to update your profile</h1>
+	<br>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ profile_form.first_name|as_crispy_field }}
+				
+				{{ profile_form.address|as_crispy_field }}
+				
+				{{ profile_form.postal_code|as_crispy_field }}
+		</div>
+		<div class="col-sm-3">
+				{{ profile_form.last_name|as_crispy_field }}
+				{{ profile_form.city|as_crispy_field }}
+				{{ profile_form.date_of_birth|as_crispy_field }}
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+			<center><input type="submit" class="btn btn-info" value="submit"></center>
+			</form>
+		
+		
+	
+</div>
+
+{% endblock content %}
