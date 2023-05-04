@@ -6,8 +6,7 @@ jobs:
       - image: circleci/python:3.8
 
     steps:
-      - checkout:
-          path: ./code
+      - checkout
 
       # Set up a Python virtual environment
       - run:
@@ -21,20 +20,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip3 install -r requirements.txt
+            pip3 install -r ./code/requirements.txt
             pip3 install pytest pytest-django
             
       # Set the DJANGO_SETTINGS_MODULE environment variable
       - run:
           name: Set DJANGO_SETTINGS_MODULE
           command: |
-            export DJANGO_SETTINGS_MODULE=ksgstore.settings
-      
-      # Run server
-      - run:
-          name: Run server
-          command: |
-            python3 manage.py runserver            
+            export DJANGO_SETTINGS_MODULE=ksgstore.settings         
 
       # Run pytest
       - run:
