@@ -7,6 +7,11 @@ jobs:
 
     steps:
       - checkout
+      
+      # Navigate to the code directory
+      - run:
+          name: Navigate to code
+          command: cd code
 
       # Set up a Python virtual environment
       - run:
@@ -23,9 +28,9 @@ jobs:
             pip3 install -r requirements.txt
             pip3 install pytest pytest-django
             
-      # Configure settings path
+      # Set the DJANGO_SETTINGS_MODULE environment variable
       - run:
-          name: Configure path
+          name: Set DJANGO_SETTINGS_MODULE
           command: |
             export DJANGO_SETTINGS_MODULE=ksgstore.settings
       
