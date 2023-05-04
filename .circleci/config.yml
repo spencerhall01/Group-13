@@ -13,15 +13,21 @@ jobs:
           name: Set up Python environment
           command: |
             python3 -m venv venv
-            . venv/bin/activate
-            pip install --upgrade pip
+            source venv/bin/activate
+            pip3 install --upgrade pip
 
       # Install dependencies
       - run:
           name: Install dependencies
           command: |
-            pip install -r requirements.txt
-            pip install pytest pytest-django
+            pip3 install -r requirements.txt
+            pip3 install pytest pytest-django
+            
+      # Configure settings path
+      - run:
+          name: Configure path
+          command: |
+            export DJANGO_SETTINGS_MODULE=ksgstore.settings
 
       # Run pytest
       - run:
