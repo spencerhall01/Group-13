@@ -7,11 +7,7 @@ jobs:
 
     steps:
       - checkout
-      
-      # Navigate to the code directory
-      - run:
-          name: Navigate to code
-          command: cd code
+          path: ./code
 
       # Set up a Python virtual environment
       - run:
