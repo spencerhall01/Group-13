@@ -27,7 +27,8 @@ jobs:
       - run:
           name: Set DJANGO_SETTINGS_MODULE
           command: |
-            export DJANGO_SETTINGS_MODULE=code.ksgstore.settings         
+            export DJANGO_SETTINGS_MODULE=code.ksgstore.settings
+            export PYTHONPATH=$PYTHONPATH:$HOME/project/code         
 
       # Run pytest
       - run:
