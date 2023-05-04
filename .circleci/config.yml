@@ -28,6 +28,12 @@ jobs:
           name: Configure path
           command: |
             export DJANGO_SETTINGS_MODULE=ksgstore.settings
+      
+      # Run server
+      - run:
+          name: Run server
+          command: |
+            python3 manage.py runserver            
 
       # Run pytest
       - run:
