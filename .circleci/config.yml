@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip3 install -r ./code/requirements.txt
+            pip3 install -r requirements.txt
             pip3 install pytest pytest-django
             
       # Set the DJANGO_SETTINGS_MODULE environment variable
