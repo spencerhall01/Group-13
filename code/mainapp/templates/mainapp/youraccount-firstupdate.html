@@ -1,0 +1,38 @@
+{% extends "mainapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% include "mainapp/nav.html" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<br>
+<h3 class="text-center">Update your details</h3>
+    <div class="container pb-5">
+        <br><br>
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">{{form.first_name|as_crispy_field}}</div>
+                            <div class="col-6">{{form.last_name|as_crispy_field}}</div>
+                            
+                        </div>
+                        <div class="row py-3">
+                            <div class="col-6">{{form.gender|as_crispy_field}}</div>
+                            <div class="col-6 d-flex align-items-end">
+                                {{form.is_seller|as_crispy_field}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Update</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#id_gender').removeClass('select');
+            $('#id_gender').addClass('form-control');
+        })
+    </script>
+{% endblock content %}
