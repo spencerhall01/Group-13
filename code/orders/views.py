@@ -18,13 +18,15 @@ def order_create(request):
                 OrderItem.objects.create(
                     order=order,
                     product=item['product'],
-                    price=item['price'],
+                    price=int(item['quantity']) * int(item['price']),
+                    quantity=item['quantity']
                 )
                 print(item['product'])
                 the_product = get_object_or_404(Product, id=item['product'].id)
                 the_owner = get_object_or_404(CustomUser, id=the_product.owner.id)
-                the_owner.account_balance += item['price']
-                the_product.available = False
+                the_owner.account_balance += int(item['quantity']) * int(item['price'])
+                # the_product.available = False
+                the_product.quantity -= item['quantity']
                 the_owner.save()
                 the_product.save()
             cart.clear()

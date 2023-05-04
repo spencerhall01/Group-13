@@ -8,17 +8,42 @@ jobs:
     steps:
       - checkout
 
+      # Set up a Python virtual environment
+      - run:
+          name: Set up Python environment
+          command: |
+            python3 -m venv venv
+            source venv/bin/activate
+            pip3 install --upgrade pip
+
+      # Install dependencies
       - run:
           name: Install dependencies
           command: |
-            pip install -r requirements.txt
-            pip install pytest pytest-django
-
+            pip3 install -r ./code/requirements.txt
+            pip3 install pytest
+            
+      # Set the DJANGO_SETTINGS_MODULE environment variable
       - run:
-          name: Run tests
+          name: Set DJANGO_SETTINGS_MODULE
+          command: |
+            export DJANGO_SETTINGS_MODULE=code.ksgstore.settings
+            export PYTHONPATH=$PYTHONPATH:$HOME/project/code         
+
+      # Run pytest
+      - run:
+          name: Run pytest
           command: |
             pytest
 
+      # Save test results
+      - store_test_results:
+          path: test-results.xml
+
+      # Upload artifacts
+      - store_artifacts:
+          path: test-results.xml
+          
 workflows:
   version: 2
   build:

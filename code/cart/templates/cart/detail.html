@@ -29,8 +29,8 @@
                     <tr>
                         <th>Image</th>
                         <th>Product</th>
-                        <!-- <th>Quantity</th> -->
-                        <!-- <th>Unit Price</th> -->
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
@@ -46,6 +46,16 @@
                             </td>
 
                             <td>{{ product.name }}</td>
+                            <td>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.update }}
+                                    <input type="submit" value="Update" class="btn btn-info">
+                                </form>
+                            </td>
+
+                            <td>kshs. {{ item.price }}</td>
                             <td>US ${{ item.total_price }}</td>
                             <td>
                                 <a href="{% url 'cart:cart_remove' product.id %}">Remove</a>

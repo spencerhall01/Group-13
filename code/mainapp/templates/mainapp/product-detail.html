@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% include 'mainapp/nav.html' %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <section class="ftco-section">
 	<div class="container">
 		<div class="row">
@@ -12,20 +12,28 @@
 			</div>
 			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
 				<h3>{{product.name}}</h3>
-				<div class="rating d-flex">
+				<div class="rating">
 
 					<p class="text-left mr-4">Offered by {{product.owner.first_name}} {{product.owner.last_name}}</p>
+					{% if product.quantity == 0 %}
+					  <p style="color:red;font-weight:bolder">Sold out</p>
+					  {% else %}
+					  <p style="color:purple"><b>{{product.quantity}} units remaining</b></p>
+					{% endif %}
+					
 
 				</div>
 				<p class="price" style="color:black;"><span>US ${{product.price}}</span></p>
 				<h4>Description</h4>
 				<p>{{product.description}}</p>
-
-				<form action="{% url 'cart:cart_add' product.id %}" method="post">
+				{% if product.quantity > 0 %}
+				  <form action="{% url 'cart:cart_add' product.id %}" method="post">
 					{% csrf_token %}
 					{{ cart_product_form }}
 					<p><input type="submit" class="btn btn-black py-3 px-5" value="Add to Cart"></p>
 				</form>
+				{% endif %}
+				
 			</div>
 		</div>
 	</div>
@@ -74,6 +82,7 @@
 
 
 <script>
+	const product_quantity = "{{product.quantity}}";
 	$(document).ready(function () {
 
 		var quantitiy = 0;
@@ -106,6 +115,16 @@
 				$('#quantity').val(quantity - 1);
 			}
 		});
+		// var someOptions = "";
+		// for (let i = 1; i < parseInt(product_quantity)+2; i++) {
+		// 		someOptions+="<option value=" + i +">" + i + "</option>";
+		// 	}
+		// $('#id_quantity').empty();
+		// $('#id_quantity').html(someOptions)
+		// $('select').children(':last-child').remove();
+		$('input').attr('min',1);
+		$('input').attr('max', parseInt(product_quantity));
+		$('input').attr('placeholder',1);
 
 	});
 </script>

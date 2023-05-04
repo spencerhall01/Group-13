@@ -1,0 +1,40 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% include 'mainapp/nav.html' %}
+<div class="container">
+    <h3 class="py-5 text-center">Your Order History</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Photo</td>
+                <td>Name</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in customer_orders %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>
+                    <img src="{{ order.product.image.url }}" style="height:50px;width:auto">
+                </td>
+                <td>{{order.product.name}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.price}}</td>
+                <td>
+                    <a href="{% url 'mainapp:return-order' order.product.id %}">
+                        <button class="btn btn-sm btn-warning">Return</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

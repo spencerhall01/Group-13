@@ -43,6 +43,7 @@
 									<i class="fa fa-paper-plane"></i>&nbsp;Add Inventory</span>
 							</button>
 						</a>
+						<p class="pt-3"><b>Account Balance: ${{request.user.account_balance}}</b></p>
 					</center>
 					{% endif %}
 				</div>
@@ -57,7 +58,7 @@
 		{% if not pro or unapproved_products %}
 		<h1 class="text-center" style="color:purple">Your Products will appear here after approval by the Administrator</h1>
 		{% endif %}
-		<h2 class="text-center">{% if pro %}Here are the items you have for sale in our store {% else %} You currently have no items in our store for sale {% endif %}</h2>
+		<h2 class="text-center">{% if pro %}Here are the items you are currently selling in our store {% else %} You currently have no items to sell out in our store{% endif %}</h2>
 		<br><br><br>
 	<div class="row">
 		<br><br>

@@ -27,5 +27,7 @@ urlpatterns = [
     path('terms', views.terms_view, name='terms'),
 
     path('your-account', views.youraccount_view, name='your-account'),
-    path('first-account-update', views.profilefirstupdateview, name='first-account-update')
+    path('first-account-update', views.profilefirstupdateview, name='first-account-update'),
+    path('orderhistory', views.order_history, name='order-history'),
+    path('return-order/<int:id>', views.return_order, name='return-order')
 ]

@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% include "mainapp/nav.html" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <br>
 <h3 class="text-center">Register an account</h3>
     <div class="container pb-5">
@@ -36,4 +37,20 @@
             </div>
         </div>
     </div>
+<script>
+    $(document).ready(function(){
+        $('#id_first_name').keypress(function(event){
+            var charCode = event.which;
+            if (charCode >= 48 && charCode <= 57) {
+                event.preventDefault();
+            }
+        });
+        $('#id_last_name').keypress(function(event){
+            var charCode = event.which;
+            if (charCode >= 48 && charCode <= 57) {
+                event.preventDefault();
+            }
+        });
+    })
+</script>
 {% endblock content %}

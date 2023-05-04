@@ -13,6 +13,7 @@ from django.utils import timezone
 from .models import CustomUser
 from django.utils.text import slugify
 from django.db.models import Q
+from orders.models import Order, OrderItem
 def register(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
@@ -189,3 +190,35 @@ def search_results(request):
     context = {'products':products, 'query':query}
 
     return render(request, 'mainapp/search_results.html', context)
+
+@login_required
+def order_history(request):
+    customer_orders = OrderItem.objects.filter(order__email=request.user.email)
+    context = {
+        'customer_orders':customer_orders
+    }
+    return render(request, 'mainapp/orderhistory.html', context)
+
+# @login_required
+# def confirm_return_order(request, id):
+#     return render(request, 'mainapp/confirm-return-order.html')
+
+@login_required
+def return_order(request, id):
+    customer_orders = OrderItem.objects.filter(order__email=request.user.email, product__id=id)
+    for od in customer_orders:
+        print(od.price)
+    if request.method == 'POST':
+        for order in customer_orders:
+            if order.product.id == id:
+                og_product = Product.objects.get(id=id)
+                og_product.quantity += order.quantity
+                og_product.save()
+                the_owner = get_object_or_404(CustomUser, id=order.product.owner.id)
+                the_owner.account_balance -= order.price
+                the_owner.save()
+                order.order.delete()
+                order.delete()
+        return redirect('mainapp:order-history')
+    context = {'customer_orders':customer_orders}
+    return render(request, 'mainapp/confirm-return-order.html', context)
