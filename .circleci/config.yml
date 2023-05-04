@@ -6,8 +6,8 @@ jobs:
       - image: circleci/python:3.8
 
     steps:
-      - checkout
-          path: code
+      - checkout:
+          path: ./code
 
       # Set up a Python virtual environment
       - run:
