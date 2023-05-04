@@ -20,15 +20,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip3 install -r ./code/requirements.txt
+            pip3 install -r requirements.txt
             pip3 install pytest
             
       # Set the DJANGO_SETTINGS_MODULE environment variable
       - run:
           name: Set DJANGO_SETTINGS_MODULE
           command: |
-            export DJANGO_SETTINGS_MODULE=code.ksgstore.settings
-            export PYTHONPATH=$PYTHONPATH:$HOME/project/code         
+            export DJANGO_SETTINGS_MODULE=code.ksgstore.settings         
 
       # Run pytest
       - run:
