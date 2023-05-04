@@ -1,0 +1,19 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block title %}
+    Your Shopping Cart| Thank you
+{% endblock %}
+
+{% block content %}
+{% include "mainapp/nav.html" %}
+    <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <div class="col-md-8 mx-auto">
+                <h3 class="page-header text-center">Thank You For Shopping With Us
+                </h3>
+                <p class="text-center">Your order has been successfully completed. Your order number is <strong>#{{ request.session.customer_order }}</strong>.</p>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}
